@@ -1,0 +1,114 @@
+body {
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+body::before{
+	content: "";
+	position: fixed;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	/*background-color: rgba(117, 158, 178,0.75);*/
+	background-color: rgba(6, 18, 38,0.93);
+}
+
+.chart_1{
+	color: green;
+	display: block;
+	width: 100%;
+}
+
+.nav1{
+	background-color: rgba(6, 27, 38,0.75);
+}
+.icon-bar{
+	background: white;
+}
+#title1{
+	color:rgba(33, 136, 188,.95);
+}
+.titleBrand {
+	color:white;
+}
+
+#myNavbar a{
+	color: white;
+}
+#myNavbar a:hover{
+	color: #79a879;
+}
+
+#regionDrop{
+	background-color: black;
+	color: black;
+}
+.summonerBox{
+	position: relative;
+	background-image: url('Images/titleBG1.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/*Begin of summoner banner style*/
+#summoner_page_header{
+	position: relative;
+	background-image: url('Images/review.jpg');
+	width: 100%;
+    height: 360px;
+    background-color: rgba(0,0,0,1);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container .overlay {
+	background: rgba(0,0,0,0.5);
+	width: 100%;
+	height: 100%;
+}
+
+.container .champion_info{
+	position: absolute;
+	bottom: 0;
+	padding: 15px;
+}
+.container .d-flex{
+	display: flex!important;
+}
+
+.container .champion_icon{
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    vertical-align: bottom;
+}
+
+.container .d-inline-block{
+    display: inline-block!important;
+}
+
+.container .summoner_border{
+	border: 1px solid rgba(246,222,167,0.5);
+}
+
+.container .info-text{
+	font-family: 'Roboto-Black', sans-serif;
+}
+
+.container .flex-column{
+	flex-direction: column!important;
+}
+
+.container .justify-center{
+	justify-content: center!important;
+}
+
+.container .d-inline-flex{
+	display: inline-flex!important;
+}
+/*End of summoner banner styling*/

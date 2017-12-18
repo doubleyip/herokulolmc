@@ -1,0 +1,250 @@
+body {
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+body::before{
+	content: "";
+	position: fixed;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	/*background-color: rgba(117, 158, 178,0.75);*/
+	background-color: rgba(6, 18, 38,0.93);
+}
+
+.chart_1{
+	color: green;
+	display: block;
+	width: 100%;
+}
+
+.nav1{
+	background-color: rgba(6, 27, 38,0.75);
+}
+.icon-bar{
+	background: white;
+}
+#title1{
+	color:rgba(33, 136, 188,.95);
+}
+.titleBrand {
+	color:white;
+}
+
+#myNavbar a{
+	color: white;
+}
+#myNavbar a:hover{
+	color: #79a879;
+}
+
+#regionDrop{
+	background-color: black;
+	color: black;
+}
+/*
+.summonerBox{
+	position: relative;
+	background-image: url('Images/titleBG1.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}*/
+
+/*Begin of summoner banner style*/
+#summoner_page_header{
+	position: relative;
+	/*background-image: url('Images/review.jpg');*/
+	width: 100%;
+    height: 360px;
+    background-color: rgba(0,0,0,1);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container .overlay {
+	background: rgba(0,0,0,0.5);
+	width: 100%;
+	height: 100%;
+}
+
+.container .champion_info{
+	position: absolute;
+	bottom: 0;
+	padding: 15px;
+}
+.container .d-flex{
+	display: flex!important;
+}
+
+.container .champion_icon{
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    vertical-align: bottom;
+}
+
+.container .d-inline-block{
+    display: inline-block!important;
+}
+
+.container .summoner_border{
+	border: 1px solid rgba(246,222,167,0.5);
+}
+
+.container .info-text{
+	font-family: 'Roboto-Black', sans-serif;
+}
+
+.container .flex-column{
+	flex-direction: column!important;
+}
+
+.container .justify-center{
+	justify-content: center!important;
+}
+
+.container .d-inline-flex{
+	display: inline-flex!important;
+}
+/*End of summoner banner styling*/
+
+/*RANK STATS*/
+
+.rank{
+	height: 215px;
+	background: black;
+	border: 1px solid #2e2734;
+}
+.rank .tier{
+	font-size:24px;
+	font-family: 'Roboto-Black', sans-serif;
+	color: white;
+}
+.rank .leaguepoints{
+	font-size: 14px;
+	color:white;
+	font-family: 'Roboto-Black', sans-serif;
+}
+.rank .winratio{
+	font-size: 14px;
+	font-family: 'Roboto-Black', sans-serif;
+	color: green;
+}
+.d-flex{
+	display: flex!important;
+}
+
+.align-items-center{
+	align-items: center!important;
+}
+/*RANK STATUS END*/
+
+/*Summoner Match History Table*/
+table {
+	border-collapse: collapse;
+}
+img{
+	vertical-align: middle;
+	border-style: none;
+}
+div{
+	display: block;
+}
+.match-history .match {
+    position: relative;
+    height: 100px;
+    background-clip: padding-box;
+    background-color: #0f0713;
+    background-position: center left;
+    background-repeat: no-repeat;
+    border: 1px solid;
+}
+.match-history p.value{
+	margin:0;
+	font-family: 'Roboto-Black', sans-serif;
+	font-size: 16px;
+	
+}
+.match-history .time{
+	width: 120px;
+	margin-left: 45px;
+}
+.match-history .kda{
+	width:120px;
+}
+.match-history .match-sm{
+	position: relative;
+    padding: 0 10px;
+    height: 70px;
+    background-color: #0f0713;
+    border: 1px solid;
+    border-top: none;
+}
+.match-history .match-sm>*{
+	margin: 0 2px;
+}
+.match-history .icons{
+	position: relative;
+	width: 160px;
+}
+.match-history .trinket{
+	margin-left: 1px;
+}
+.justify-content-start{
+	justify-content: flex-start!important;
+}
+.align-items-center{
+	align-items: center!important;
+}
+.flex-column{
+	flex-direction: column!important;
+}
+.d-flex1{
+	display: flex!important;
+}
+.d-flex{
+	display: flex!important;
+}
+.d-none{
+	display: none!important;
+}
+.kda p.value span{
+	font-size: 16px;
+}
+.p5 {
+	padding: 3rem!important;
+}
+.w-100{
+	width: 100%!important;
+}
+.align-middle{
+	vertical-align: middle!important;
+}
+.p2{
+	padding: .5rem!important;
+}
+.text-left{
+	text-align: left!important;
+}
+.text-center{
+	text-align: center!important;
+}
+.text-right{
+	text-align: right!important;
+}
+@media(min-width: 768px){
+	.d-md-none
+	{
+    	display: none!important;
+	}	
+}
+.white-text{
+	background-color: rgba(0,0,0,0.4);
+	color:white;
+}
