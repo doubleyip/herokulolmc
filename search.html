@@ -1,0 +1,680 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/search.css">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://rawgit.com/nnnick/Chart.js/v1.0.2/Chart.min.js"></script>
+
+</head>
+
+<body >
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() { 
+        //alert('hello!');
+        var x = processUser();
+        console.log(x);
+        printStuff(x);
+      }, false);
+</script>
+
+<!--Navbar tab-->
+<nav class="navbar nav1">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <!--lol icon button-->
+      <a class="navbar-brand titleBrand" href="index.html"> 
+      	<span><img src="css/Images/icon1.png" alt="lol icon" width=30px height=30px></span>
+      	<b>LOL<span id="title1">MAPCHECKER</span></b>
+      </a>
+    </div>
+    <!--Search bar on header-->
+    <div class="collapse navbar-collapse" id="myNavbar">
+    	<form class="navbar-form navbar-right">
+      		<div class="form-group">
+        		<div class="input-group">
+      				<div class="input-group-btn selectRegion">
+        				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Region <span class="caret"></span></button>
+        				<ul class="dropdown-menu" id="regionDrop">
+          					<li><a href="#">NA</a></li>
+          					<li><a href="#">EU</a></li>
+          					<li><a href="#">KR</a></li>
+          					<li role="separator" class="divider"></li>
+          					<li><a href="#">Separated link</a></li>
+        				</ul>
+      				</div><!-- /btn-group -->
+      				<input type="text" name = "search" class="form-control" aria-label="..." placeholder="Search Summoner...">
+    			</div><!-- /input-group -->
+      		</div>
+      		<button type="submit" class="form-submit btn btn-primary">LOLMC</button>
+    	</form>
+    	<!--Login/SignUp-->
+        <ul class="nav navbar-nav navbar-right">
+        	<li class="active"><a href="index.html">Home</a></li>
+        	<li><a href="login.html#login-form"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        	<li><a href="login.html#register-form"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	<div class="summonerChamp"></div>
+		<div class="alert alert-warning alert-dismissible" role="alert">
+  			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  			<strong>Important!</strong> Due to Riot API changes, some data may take some time to load.
+		</div>
+	<div class="summonerIcon"></div>
+	<div class="summonerName"></div>
+</div>
+
+<div class="container">
+	<!--Champion Summary Tab-->
+	<div id="summoner_page_header"> 
+		<div class="overlay">
+			<div class="champion_info d-flex">
+				<div class="champion_icon d-inline-block champion_border">
+          <img id="summoner_icon" style="display: inline-block; width: 50px; height: auto; border: 2px solid white ;">
+				</div>
+				<div class="info-text d-inline-flex flex-column justify-center">
+					<span class="white-text">NA </span>
+					<span class="title" id="user_Name" style="color:white"></span>
+					<span class="title" id="sumLevel" style="color:white"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--CS GRAPHS-->
+<div class="container">
+  <div class="row white-text" style="text-align:center; font-size: 38px; "> OVERALL ANALYTICS <span style="font-size:30px;">(LAST 20)</span></div>
+	<div class="row"> 
+		<div class="col-sm-4 well" style="background-color: rgba(0,0,0,.5); border-style:none;">
+			<canvas class="chart_1" id="myChart1" height="300" width="500"></canvas>
+      <div class="row white-text" style="text-align:center; font-size: 25px; "> AVG CS per MATCH</div>
+      <div class="row" style="font-size: 20px; text-align:center; color: #a5091f" id="avg_cs"></span> CS</div>
+		</div>
+		<div class="col-sm-4 well" style="background-color: rgba(0,0,0,.5); border-style:none;">
+			<canvas class="chart_1" id="winlossChart" height="300" width="500"></canvas>
+      <div class="row white-text" style="text-align:center; font-size: 25px; "> WIN PERCENTAGE</div>
+      <div class="row" style="font-size:20px; text-align: center; color: #1ba346"><span id="avg_win"></span> %  WIN RATE</div>
+		</div>
+		<div class="col-sm-4 well" style="background-color: rgba(0,0,0,.5); border-style:none;">
+			<canvas class="chart_1" id="kdaChart" height="300" width="500"></canvas>
+      <div class="row white-text" style="text-align:center; font-size: 25px; "> AVG PERFORMANCE</div>
+      <div class="row" style="font-size:20px; text-align: center; color: #a5091f"><span id="avg_kda"></span> k/d/a </div>
+		</div>
+	</div>
+</div>
+<!--END OF CS GRAPHS-->
+
+<div class="container">
+  <!-- Nav tabs-->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#summary" aria-controls="home" role="tab" data-toggle="tab">Summary</a></li>
+    <li role="presentation"><a href="#multimap" aria-controls="multimap" role="tab" data-toggle="tab">MultiMap</a></li>
+    <li role="presentation"><a href="#runes" aria-controls="runes" role="tab" data-toggle="tab">Runes</a></li>
+    <li role="presentation"><a href="#champions" aria-controls="champions" role="tab" data-toggle="tab">Champions</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="summary">
+    	<div class="container">
+    		<div class="row summoner-row">
+          <!--RANK ICONS-->
+    			<div class= "col-12 col-lg-4 ranks">
+            <div class="rank d-flex align-items center">
+              <div class="d-flex align-items-center">
+                <img id="summoner-tier-image">
+              </div>
+              <div class="d-flex align-items-center>">
+                <div class="content text-left">
+                  <p class="type color-secondary white-text" >Ranked Solo/Duo</p>
+                  <p class="tier"> <span id="tier"></span> <span id="division"></span></p>
+                  <p class="leaguepoints white-text"> <span id="lp"></span> LP</p> 
+                  <p class="winratio"> <span id="winNum"></span> WINS</p>
+                  <p class="winratio" style="color:red"> <span id="lossNum"></span> LOSS</p>
+                </div>
+              </div>
+            </div>
+    			</div>
+          <!--RANK ICONS END-->
+          <!--MATCH HISTORY TABLES-->
+    			<div class= "col-12 col-lg-8 match-history">
+            <table class="match align-middle p-5 w-100" id="match_1" style="background-size: cover; opacity: .80;">
+              <tbody>
+                <tr>
+                  <td class="align-middle text-left p-2">
+                    <img class="champion-circle" id="champion_image_1" style="display:inline-block; width: 50px; height: 50px">
+                  </td>
+                  <td class="align-middle"> 
+                    <div class="short-info" style="width: 150px;">
+                      <p class="value white-text" id= "outcome_1" ></p>
+                      <p class="text white-text" id="queue_1" ></p>
+                      <p class="white-text" id="table_match_id_1"> <p>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="kda tip text-center">
+                      <p class="value">
+                        <span class="white-text" id="kills_1"></span> <span class="white-text"> / <span>
+                        <span class="white-text" id="deaths_1"></span> <span class="white-text"> / <span>
+                        <span class="white-text" id="assists_1"></span>
+                      </p>
+                      <p class="text white-text">KDA</p>
+                    </div>
+                  </td>
+                  <td class=" d-md-table-cell align-middle height-100">
+                    <div class="d-flex icons">
+                      <div class="spells">
+                        <img class="spell tip" id="ss_spell1" >
+                        <img class="spell tip" id="ss_spell2" >
+                      </div>
+                      <div class="items d-flex flex-column">
+                        <div class="d-flex">
+                          <img class="item tip" id="item_1_1" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_1_2" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_1_3" style="display:inline-block; width: 50px; height: 50px">
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <img class="item tip" id="item_1_4" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_1_5" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_1_6" style="display:inline-block; width: 50px; height: 50px">
+                        </div>
+                      </div>
+                      <div class="trinket d-flex align-items-centers">
+                        <img class="item tip" id="trinket_1" style="display:inline-block; width: 50px; height: 50px">
+                      </div>
+                    </div>
+                  </td>
+                  <td class="align-middle "> 
+                    <div class="time tip text-center white-text">
+                      <p class="value white-text" id= "duration_1"></p>
+                      <p class="text white-text" id= "date_1"></p>
+                    </div>
+                  </td>
+                  <td class="align-middle text-right p-2"> 
+                    <div class="save text-right">
+                      <button class="btn btn-primary" onclick="saveMatch('0')"> Save Match</button>
+                      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseTarget" aria-expanded="false" aria-controls="collapseTarget"> Expand</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!--EXPAND BUTTON DETAILS-->
+            <div class="collapse" id="collapseTarget">
+              <div class="container tabs-wrapper">
+                  <!--NAVS-->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
+                    <li role="presentation"><a href="#maps" aria-controls="maps" role="tab" data-toggle="tab">Maps</a></li>
+                  </ul>
+                  <!--END OF NAVS-->
+                  <!-- Tab panes -->
+                <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane active" id="overview">
+                    <div class="container">
+                       <canvas class="chart_1" id="match_creep_1"></canvas>
+                    </div>
+                  </div>
+                  
+                  <!-- end of match overview-->
+                  <div role="tabpanel" class="tab-pane" id="maps">
+                    <div class="container">
+                      <div id="map_1"></div>
+                    </div>
+                  </div>
+                </div>
+                  <!--END OF TABS-->
+              </div>
+            </div>
+            <!--END OF DROP DOWN EXPAND BTN-->
+            <table class="match align-middle p-5 w-100" id = "match_2" style="background-size: cover; opacity: .80;" >
+              <tbody>
+                <tr>
+                  <td class="align-middle text-left p-2">
+                    <img class="champion-circle" id="champion_image_2" style="display:inline-block; width: 50px; height: 50px">
+                  </td>
+                  <td class="align-middle"> 
+                    <div class="short-info" style="width: 150px;">
+                      <p class="value white-text" id= "outcome_2" ></p>
+                      <p class="text white-text" id="queue_2" ></p>
+                      <p class="white-text" id="table_match_id_2"> <p>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="kda tip text-center">
+                      <p class="value white-text">
+                        <span class="white-text" id="kills_2"></span> <span class="white-text"> / <span>
+                        <span class="white-text" id="deaths_2"></span> <span class="white-text"> / <span>
+                        <span class="white-text" id="assists_2"></span> 
+                      </p>
+                      <p class="text white-text">KDA</p>
+                    </div>
+                  </td>
+                  <td class=" d-md-table-cell align-middle height-100">
+                    <div class="d-flex icons">
+                      <div class="spells">
+                        <img class="spell tip" id="ss_spell1" >
+                        <img class="spell tip" id="ss_spell2" >
+                      </div>
+                      <div class="items d-flex flex-column">
+                        <div class="d-flex">
+                          <img class="item tip" id="item_2_1" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_2_2" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_2_3" style="display:inline-block; width: 50px; height: 50px">
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <img class="item tip" id="item_2_4" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_2_5" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_2_6" style="display:inline-block; width: 50px; height: 50px">
+                        </div>
+                      </div>
+                      <div class="trinket d-flex align-items-centers">
+                        <img class="item tip" id="trinket_2" style="display:inline-block; width: 50px; height: 50px">
+                      </div>
+                    </div>
+                  </td>
+                  <td class="align-middle "> 
+                    <div class="time tip text-center">
+                      <p class="value white-text" id= "duration_2"></p>
+                      <p class="text white-text" id= "date_2"></p>
+                  </td>
+                  <td class="align-middle text-right p-2"> 
+                    <div class="save text-right">
+                      <button class="btn btn-primary" onclick="saveMatch('1')"> Save Match</button>
+                      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseTarget_2" aria-expanded="false" aria-controls="collapseTarget_2"> Expand</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!--EXPAND BUTTON DETAILS-->
+            <div class="collapse" id="collapseTarget_2">
+              <div class="container tabs-wrapper">
+                  <!--NAVS-->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#overview_2" aria-controls="overview_2" role="tab" data-toggle="tab">Overview</a></li>
+                    <li role="presentation"><a href="#maps_2" aria-controls="maps_2" role="tab" data-toggle="tab">Maps</a></li>
+                  </ul>
+                  <!--END OF NAVS-->
+                  <!-- Tab panes -->
+                <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane active" id="overview_2">
+                    <div class="container">
+                       <canvas class="chart_1" id="match_creep_2"></canvas>
+                    </div>
+                  </div>
+                  <!-- end of match overview-->
+                  <div role="tabpanel" class="tab-pane" id="maps_2">
+                    <div class="container">
+                      <div id="map_2"></div>
+                    </div>
+                  </div>
+                </div>
+                  <!--END OF TABS-->
+              </div>
+            </div>
+            <!--END OF DROP DOWN EXPAND BTN-->
+            <table class="match align-middle p-5 w-100" id="match_3" style="background-size: cover; opacity: .80;">
+              <tbody>
+                <tr>
+                  <td class="align-middle text-left p-2">
+                    <img class="champion-circle" id="champion_image_3" style="display:inline-block; width: 50px; height: 50px">
+                  </td>
+                  <td class="align-middle"> 
+                    <div class="short-info" style="width: 150px;">
+                      <p class="value white-text" id= "outcome_3" ></p>
+                      <p class="text white-text" id="queue_3" ></p>
+                      <p class="white-text" id="table_match_id_3"> <p>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="kda tip text-center">
+                      <p class="value">
+                        <span class="white-text" id="kills_3"></span> <span class="white-text"> / <span>
+                        <span class="white-text" id="deaths_3"></span> <span class="white-text"> / <span>
+                        <span class="white-text" id="assists_3"></span> 
+                      </p>
+                      <p class="text white-text">KDA</p>
+                    </div>
+                  </td>
+                  <td class=" d-md-table-cell align-middle height-100">
+                    <div class="d-flex icons">
+                      <div class="spells">
+                        <img class="spell tip" id="ss_spell1" >
+                        <img class="spell tip" id="ss_spell2" >
+                      </div>
+                      <div class="items d-flex flex-column">
+                        <div class="d-flex">
+                          <img class="item tip" id="item_3_1" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_3_2" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_3_3" style="display:inline-block; width: 50px; height: 50px">
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <img class="item tip" id="item_3_4" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_3_5" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_3_6" style="display:inline-block; width: 50px; height: 50px">
+                        </div>
+                      </div>
+                      <div class="trinket d-flex align-items-centers">
+                        <img class="item tip" id="trinket_3" style="display:inline-block; width: 50px; height: 50px">
+                      </div>
+                    </div>
+                  </td>
+                  <td class="align-middle "> 
+                    <div class="time tip text-center">
+                      <p class="value white-text" id= "duration_3"></p>
+                      <p class="text white-text" id= "date_3"></p>
+                  </td>
+                  <td class="align-middle text-right p-2"> 
+                    <div class="save text-right">
+                      <button class="btn btn-primary" onclick="saveMatch('2')"> Save Match</button>
+                      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseTarget_3" aria-expanded="false" aria-controls="collapseTarget_3"> Expand</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!--EXPAND BUTTON DETAILS-->
+            <div class="collapse" id="collapseTarget_3">
+              <div class="container tabs-wrapper">
+                  <!--NAVS-->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#overview_3" aria-controls="overview_3" role="tab" data-toggle="tab">Overview</a></li>
+                    <li role="presentation"><a href="#maps_3" aria-controls="maps_3" role="tab" data-toggle="tab">Maps</a></li>
+                  </ul>
+                  <!--END OF NAVS-->
+                  <!-- Tab panes -->
+                <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane active" id="overview_3">
+                    <div class="container">
+                       <canvas class="chart_1" id="match_creep_3"></canvas>
+                    </div>
+                  </div>
+                  <!-- end of match overview-->
+                  <div role="tabpanel" class="tab-pane" id="maps_3">
+                    <div class="container">
+                      <div id="map_3"></div>
+                    </div>
+                  </div>
+                </div>
+                  <!--END OF TABS-->
+              </div>
+            </div>
+            <!--END OF DROP DOWN EXPAND BTN-->
+            <table class="match align-middle p-5 w-100" id="match_4" style="background-size: cover; opacity: .80;">
+              <tbody>
+                <tr>
+                  <td class="align-middle text-left p-2">
+                    <img class="champion-circle" id="champion_image_4" style="display:inline-block; width: 50px; height: 50px">
+                  </td>
+                  <td class="align-middle"> 
+                    <div class="short-info" style="width: 150px;">
+                      <p class="value white-text" id= "outcome_4" ></p>
+                      <p class="text white-text" id="queue_4" ></p>
+                      <p class="white-text" id="table_match_id_4"> <p>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="kda tip text-center">
+                      <p class="value">
+                        <span class="white-text" id="kills_4"></span> <span class="white-text"> / <span>
+                        <span class="white-text" id="deaths_4"></span> <span class="white-text"> / <span>
+                        <span class="white-text" id="assists_4"></span> 
+                      </p>
+                      <p class="text white-text">KDA</p>
+                    </div>
+                  </td>
+                  <td class=" d-md-table-cell align-middle height-100">
+                    <div class="d-flex icons">
+                      <div class="spells">
+                        <img class="spell tip" id="ss_spell1" >
+                        <img class="spell tip" id="ss_spell2" >
+                      </div>
+                      <div class="items d-flex flex-column">
+                        <div class="d-flex">
+                          <img class="item tip" id="item_4_1" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_4_2" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_4_3" style="display:inline-block; width: 50px; height: 50px">
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <img class="item tip" id="item_4_4" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_4_5" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_4_6" style="display:inline-block; width: 50px; height: 50px">
+                        </div>
+                      </div>
+                      <div class="trinket d-flex align-items-centers">
+                        <img class="item tip" id="trinket_4" style="display:inline-block; width: 50px; height: 50px">
+                      </div>
+                    </div>
+                  </td>
+                  <td class="align-middle "> 
+                    <div class="time tip text-center">
+                      <p class="value white-text" id= "duration_4"></p>
+                      <p class="text white-text" id= "date_4"></p>
+                  </td>
+                  <td class="align-middle text-right p-2"> 
+                    <div class="save text-right">
+                      <button class="btn btn-primary" onclick="saveMatch('3')"> Save Match</button>
+                      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseTarget_4" aria-expanded="false" aria-controls="collapseTarget_4"> Expand</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!--EXPAND BUTTON DETAILS-->
+            <div class="collapse" id="collapseTarget_4">
+              <div class="container tabs-wrapper">
+                  <!--NAVS-->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#overview_4" aria-controls="overview_4" role="tab" data-toggle="tab">Overview</a></li>
+                    <li role="presentation"><a href="#maps_4" aria-controls="maps_4" role="tab" data-toggle="tab">Maps</a></li>
+                  </ul>
+                  <!--END OF NAVS-->
+                  <!-- Tab panes -->
+                <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane active" id="overview_4">
+                    <div class="container">
+                       <canvas class="chart_1" id="match_creep_4"></canvas>
+                    </div>
+                  </div>
+                  <!-- end of match overview-->
+                  <div role="tabpanel" class="tab-pane" id="maps_4">
+                    <div class="container">
+                      <div id="map_4"></div>
+                    </div>
+                  </div>
+                </div>
+                  <!--END OF TABS-->
+              </div>
+            </div>
+            <!--END OF DROP DOWN EXPAND BTN-->
+            <table class="match align-middle p-5 w-100" id="match_5" style="background-size: cover; opacity: .80;">
+              <tbody>
+                <tr>
+                  <td class="align-middle text-left p-2">
+                    <img class="champion-circle" id="champion_image_5" style="display:inline-block; width: 50px; height: 50px">
+                  </td>
+                  <td class="align-middle"> 
+                    <div class="short-info" style="width: 150px;">
+                      <p class="value white-text" id= "outcome_5" ></p>
+                      <p class="text white-text" id="queue_5" ></p>
+                      
+                      <p class="white-text" id="table_match_id_5" > <p>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="kda tip text-center">
+                      <p class="value">
+                        <span class="white-text" id="kills_5"></span> <span class="white-text"> / <span>
+                        <span class="white-text" id="deaths_5"></span> <span class="white-text"> / <span>
+                        <span class="white-text" id="assists_5"></span>
+                      </p>
+                      <p class="text white-text">KDA</p>
+                    </div>
+                  </td>
+                  <td class=" d-md-table-cell align-middle height-100">
+                    <div class="d-flex icons">
+                      <div class="spells">
+                        <img class="spell tip" id="ss_spell1" >
+                        <img class="spell tip" id="ss_spell2" >
+                      </div>
+                      <div class="items d-flex flex-column">
+                        <div class="d-flex">
+                          <img class="item tip" id="item_5_1" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_5_2" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_5_3" style="display:inline-block; width: 50px; height: 50px">
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <img class="item tip" id="item_5_4" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_5_5" style="display:inline-block; width: 50px; height: 50px">
+                          <img class="item tip" id="item_5_6" style="display:inline-block; width: 50px; height: 50px">
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-centers">
+                        <img class="item tip" id="trinket_5" style="display:inline-block; width: 50px; height: 50px">
+                      </div>
+                    </div>
+                  </td>
+                  <td class="align-middle text-right p-2"> 
+                    <div class="time tip text-center">
+                      <p class="value white-text" id= "duration_5"></p>
+                      <p class="text white-text" id= "date_5"></p>
+                    </div>
+                  </td>
+                  <td class="align-middle text-right p-2"> 
+                    <div class="save text-right">
+                      <button class="btn btn-primary" onclick="saveMatch('4')"> Save Match</button>
+                      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseTarget_5" aria-expanded="false" aria-controls="collapseTarget_5"> Expand</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!--EXPAND BUTTON DETAILS-->
+            <div class="collapse" id="collapseTarget_5">
+              <div class="container tabs-wrapper">
+                  <!--NAVS-->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#overview_5" aria-controls="overview_5" role="tab" data-toggle="tab">Overview</a></li>
+                    <li role="presentation"><a href="#maps_5" aria-controls="maps_5" role="tab" data-toggle="tab">Maps</a></li>
+                  </ul>
+                  <!--END OF NAVS-->
+                  <!-- Tab panes -->
+                <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane active" id="overview_5">
+                    <div class="container">
+                       <canvas class="chart_1" id="match_creep_5"></canvas>
+                    </div>
+                  </div>
+                  <!-- end of match overview-->
+                  <div role="tabpanel" class="tab-pane" id="maps_5">
+                    <div class="container">
+                      <div id="map_5"></div>
+                    </div>
+                  </div>
+                </div>
+                  <!--END OF TABS-->
+              </div>
+            </div>
+            <!--END OF DROP DOWN EXPAND BTN-->
+    			</div>
+          <!--MATCH HISTORY TABLE ENDS-->
+    		</div>
+    	</div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane fade" id="multimap">
+      <div class="container">
+        <div class="row white-text" style="font-size: 50px;">
+          Multi MAP
+        </div>
+      </div>
+      <div id="map"></div>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="runes">
+    <div class="container">
+        <div class="row white-text" style="font-size: 50px;">
+          MORE COMING SOON
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="champions">
+    <div class="container">
+        <div class="row white-text" style="font-size: 50px;">
+          MORE COMING SOON
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+
+
+<!--Footer bar tab-->
+<footer>
+    <div class="navbar navbar-inverse navbar-bottom">
+        <div class="container">
+            <div class="navbar-collapse collapse" id="footer-body">
+                <ul class="nav navbar-nav">
+                    <li><a href="other.html#aboutus">About Us</a></li>
+                    <li><a href="other.html#userreview">User Review</a></li>
+                    <li><a href="other.html#termsandconditions">Terms &amp; Conditions</a></li>
+                    <li><a href="other.html#privacypolicy">Privacy Policy</a></li>
+                    <li><a href="other.html#userpolicy">User Policy</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                	<li><a href="#" class="fa fa-facebook"></a></li>
+                	<li><a href="#" class="fa fa-twitter"></a></li>
+                	<li><a href="#" class="fa fa-github"></a></li>
+                </ul>
+            </div>
+
+          	<div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#footer-body">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!--<script> queryize(window.location.href)['search'] </script>-->
+
+<script type = "text/javascript">
+	/*var x  = processUser();
+	document.getElementById("user_Name").innerHTML = x;*/
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+ <script src="js/index.js"> </script>
+ <script src="js/search.js"> </script>
+ <script src="js/tools.js">  </script>
+ <script src="js/map.js"> </script>
+
+  		<!--<script type="text/javascript"> 
+  			queryize(window.location.href)['search'];
+  		</script> -->
+
+</body>
+</html>

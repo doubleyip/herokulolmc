@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/search.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://rawgit.com/nnnick/Chart.js/v1.0.2/Chart.min.js"></script>
+
+</head>
+<body>
+
+<!--Navbar tab-->
+<nav class="navbar nav1">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <!--lol icon button-->
+      <a class="navbar-brand titleBrand" href="index.html"> 
+      	<span><img src="css/Images/icon1.png" alt="lol icon" width=30px height=30px></span>
+      	<b>LOL<span id="title1">MAPCHECKER</span></b>
+      </a>
+    </div>
+    <!--Search bar on header-->
+    <div class="collapse navbar-collapse" id="myNavbar">
+    	<form class="navbar-form navbar-right">
+      		<div class="form-group">
+        		<div class="input-group">
+      				<div class="input-group-btn selectRegion">
+        				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Region <span class="caret"></span></button>
+        				<ul class="dropdown-menu" id="regionDrop">
+          					<li><a href="#">NA</a></li>
+          					<li><a href="#">EU</a></li>
+          					<li><a href="#">KR</a></li>
+          					<li role="separator" class="divider"></li>
+          					<li><a href="#">Separated link</a></li>
+        				</ul>
+      				</div><!-- /btn-group -->
+      				<input type="text" name = "search" class="form-control" aria-label="..." placeholder="Search Summoner...">
+    			</div><!-- /input-group -->
+      		</div>
+      		<button type="submit" class="form-submit btn btn-primary">LOLMC</button>
+    	</form>
+    	<!--Login/SignUp-->
+        <ul class="nav navbar-nav navbar-right">
+        	<li class="active"><a href="index.html">Home</a></li>
+        	<li><a href="login.html#login-form"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+        	<li><a href="login.html#register-form"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
+    </div>
+  </div>
+</nav>
+
+</body>
+</html>
