@@ -25,7 +25,7 @@ function logIn(username,password) {
                 //window.location.href = "error.html";
                 alert("Incorrect Username or Password");
             },
-            async: false
+            //async: false
             // SUPER DUPER BAD idea but ¯\_(ツ)_/¯
         });
 }
@@ -44,7 +44,7 @@ function register(username,email,password,cpassword){
                 //window.location.href = "error.html";
                 alert("Oops something went wrong! Please try again");
             },
-            async: false
+            //async: false
             // SUPER DUPER BAD idea but ¯\_(ツ)_/¯
 	});
 	}
@@ -78,7 +78,7 @@ function saveMatch(fieldnum){
                 //window.location.href = "error.html";
                 alert("Oops something went wrong! Please try again");
             },
-            async: false
+            //async: false
             // SUPER DUPER BAD idea but ¯\_(ツ)_/¯
 	});
 	}
@@ -170,7 +170,7 @@ function summonerLookUp(SUMMONER_NAME) {
                 window.location.href = "error.html";
                 //alert("error getting Summoner data!");
             },
-            async: false
+            //async: false
             // SUPER DUPER BAD idea but ¯\_(ツ)_/¯
         });
     } else { }
@@ -347,7 +347,7 @@ function CreeperScoreThingy(matchnumber, match_tab) {
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("error getting Summoner data!");
         },
-        async: false
+        //async: false
     });
 
 
@@ -417,7 +417,7 @@ function CreeperScoreThingy(matchnumber, match_tab) {
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("error getting Summoner data!");
         },
-        async: false
+        //async: false
     });
 
     var chartData = {
@@ -559,7 +559,7 @@ function MultiKDA(RECENT_MATCHES) {
                 console.log("We got an error in multikda but shhhh");
             },
             ///////////////////////////////////////////////////////////
-            async: false // This line is the holy grail of our project/
+            //async: false // This line is the holy grail of our project/
             //and still a SUPER DUPER BAD idea ¯\_(ツ)_/¯ //////////////
             ///////////////////////////////////////////////////////////
         });
@@ -717,7 +717,7 @@ function multiCSGraph(RECENT_MATCHES) {
                 console.log("We got an error in multicsgraph but shhhh");
             },
             ///////////////////////////////////////////////////////////
-            async: false // This line is the holy grail of our project/
+            //async: false // This line is the holy grail of our project/
             //and still a SUPER DUPER BAD idea ¯\_(ツ)_/¯ //////////////
             ///////////////////////////////////////////////////////////
         });
@@ -782,7 +782,7 @@ function multiMatchLookUp(RECENT_MATCHES) {
                 console.log("error in multimatch lookup :( part 1");
             },
             ///////////////////////////////////////////////////////////
-            async: false // This line is the holy grail of our project/
+            //async: false // This line is the holy grail of our project/
             //and still a SUPER DUPER BAD idea ¯\_(ツ)_/¯ //////////////
             ///////////////////////////////////////////////////////////
         });
@@ -819,7 +819,7 @@ function multiMatchLookUp(RECENT_MATCHES) {
                 console.log("error in multimatch lookup :( part 2");
             },
             ///////////////////////////////////////////////////////////
-            async: false // This line is the holy grail of our project/
+            //async: false // This line is the holy grail of our project/
             //and still a SUPER DUPER BAD idea ¯\_(ツ)_/¯ //////////////
             ///////////////////////////////////////////////////////////
         });
@@ -907,7 +907,7 @@ function matchLookUp(MATCH_NUM) {
                 console.log("error in match lookup :( ");
             },
             ///////////////////////////////////////////////////////////
-            async: false // This line is the holy grail of our project/
+            //async: false // This line is the holy grail of our project/
             //and still a SUPER DUPER BAD idea ¯\_(ツ)_/¯ //////////////
             ///////////////////////////////////////////////////////////
         });
@@ -944,7 +944,7 @@ function matchLookUp(MATCH_NUM) {
                 console.log("error in match lookup zz :( ");
             },
             ///////////////////////////////////////////////////////////
-            async: false // This line is the holy grail of our project/
+            //async: false // This line is the holy grail of our project/
             //and still a SUPER DUPER BAD idea ¯\_(ツ)_/¯ //////////////
             ///////////////////////////////////////////////////////////
         });
@@ -1050,7 +1050,7 @@ function matchLookUp(MATCH_NUM) {
                 console.log("error in match lookup :( part 2");
             },
             ///////////////////////////////////////////////////////////
-            async: false // This line is the holy grail of our project/
+            //async: false // This line is the holy grail of our project/
             //and still a SUPER DUPER BAD idea ¯\_(ツ)_/¯ //////////////
             ///////////////////////////////////////////////////////////
         });
