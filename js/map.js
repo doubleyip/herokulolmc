@@ -841,21 +841,21 @@ function matchLookUp(MATCH_NUM) {
     var participantID = 'empty';
     var currID = GlobalAccountID;
 
-    var profileIcon = 'http://ddragon.leagueoflegends.com/cdn/7.24.1/img/profileicon/';
-    var itemIcon1 = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
-    var itemIcon2= 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
-    var itemIcon3 = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
-    var itemIcon4 = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
-    var itemIcon5 = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
-    var itemIcon6 = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
-    var trinketIcon = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
+    var profileIcon = 'https://ddragon.leagueoflegends.com/cdn/7.24.1/img/profileicon/';
+    var itemIcon1 = 'https://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
+    var itemIcon2= 'https://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
+    var itemIcon3 = 'https://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
+    var itemIcon4 = 'https://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
+    var itemIcon5 = 'https://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
+    var itemIcon6 = 'https://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
+    var trinketIcon = 'https://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/';
     var ChampIcon = 'https://ddragon.leagueoflegends.com/cdn/7.24.1/img/champion/';
     //var ChampIcon_1 = 'https://ddragon.leagueoflegends.com/cdn/7.24.1/img/champion/';
-    var matchBG = 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/';
+    var matchBG = 'httpss://ddragon.leagueoflegends.com/cdn/img/champion/splash/';
 
-    var errorPNG = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/0.png';
-    var ss1 = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/';
-    var ss2 = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/';
+    var errorPNG = 'https://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/0.png';
+    var ss1 = 'https://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/';
+    var ss2 = 'https://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/';
     var item1 = 'empty';
     var item2 = 'empty';
     var item3 = 'empty';
