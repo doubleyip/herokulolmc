@@ -151,6 +151,7 @@ function summonerLookUp(SUMMONER_NAME) {
         $.ajax({
             url: 'https://nodejslolmc1.herokuapp.com/sumSearch?name=' + SUMMONER_NAME,
             type: 'GET',
+	    crossDomain: true,
             dataType: 'json',
             data: {
             },
@@ -206,7 +207,8 @@ function printStuff(name) {
         $.ajax({
             url: 'https://nodejslolmc1.herokuapp.com/matchSearch?id=' + GlobalAccountID,
             type: 'GET',
-            dataType: 'json',
+            crossDomain: true,
+	    dataType: 'json',
             data: {
             },
             success: function (json) {
@@ -277,7 +279,8 @@ function SummonerProfile(summoner_id){
     $.ajax({
             url: 'https://nodejslolmc1.herokuapp.com/getLeague?id=' + curSummonerID,
             type: 'GET',
-            dataType: 'json',
+            crossDomain: true,
+	    dataType: 'json',
             data: {
             },
             success: function (json) {
@@ -331,7 +334,8 @@ function CreeperScoreThingy(matchnumber, match_tab) {
     $.ajax({
         url: 'https://nodejslolmc1.herokuapp.com/recentSearch?rmatch=' + matchnumber,
         type: 'GET',
-        dataType: 'json',
+        crossDomain: true,
+	dataType: 'json',
         data: {
         },
         success: function (json) {
@@ -356,6 +360,7 @@ function CreeperScoreThingy(matchnumber, match_tab) {
     $.ajax({
         url: 'https://nodejslolmc1.herokuapp.com/getTimeline?rmatch=' + matchnumber,
         type: 'GET',
+	crossDomain: true,
         dataType: 'json',
         data: {
         },
@@ -497,6 +502,7 @@ function MultiKDA(RECENT_MATCHES) {
         $.ajax({
             url: 'https://nodejslolmc1.herokuapp.com/recentSearch?rmatch=' + RECENT_MATCHES[m],
             type: 'GET',
+            crossDomain: true,
             dataType: 'json',
             data: {
             },
@@ -763,6 +769,7 @@ function multiMatchLookUp(RECENT_MATCHES) {
         $.ajax({
             url: 'https://nodejslolmc1.herokuapp.com/recentSearch?rmatch=' + RECENT_MATCHES[m],
             type: 'GET',
+	    crossDomain: true,
             dataType: 'json',
             data: {
             },
@@ -791,6 +798,7 @@ function multiMatchLookUp(RECENT_MATCHES) {
         $.ajax({
             url: 'https://nodejslolmc1.herokuapp.com/getTimeline?rmatch=' + RECENT_MATCHES[m],
             type: 'GET',
+	    crossDomain: true,
             dataType: 'json',
             data: {
             },
@@ -872,6 +880,7 @@ function matchLookUp(MATCH_NUM) {
         $.ajax({
             url: 'https://nodejslolmc1.herokuapp.com/recentSearch?rmatch=' + MATCH_NUM,
             type: 'GET',
+	    crossDomain: true,
             dataType: 'json',
             data: {
             },
